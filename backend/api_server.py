@@ -477,9 +477,13 @@ if __name__ == '__main__':
     print("="*70)
     print("\nPress Ctrl+C to stop server\n")
     
-    app.run(
-        host='0.0.0.0',
-        port=5000,
-        debug=True,
-        threaded=True
-    )
+   # Get port from environment (for Hugging Face Spaces)
+import os
+port = int(os.environ.get("PORT", 7860))
+
+app.run(
+    host='0.0.0.0',
+    port=port,
+    debug=False,  # Disable debug in production
+    threaded=True
+)
